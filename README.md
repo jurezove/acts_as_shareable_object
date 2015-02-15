@@ -1,5 +1,5 @@
 # acts_as_shareable_object
-
+[![Build Status](https://travis-ci.org/jurezove/acts_as_shareable_object.svg)](http://travis-ci.org/namick/obfuscate_id)
 ## Description
 This ActiveRecord extension provides the capability to define or map attributes in your ActiveRecord models that can be easily represented with the necessary Open Graph, Twitter Cards or any other custom meta tags.
 
