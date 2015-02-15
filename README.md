@@ -48,8 +48,9 @@ You can use `content_for` to get the necessary meta tags in your `<head>`.
 <head>
   <%= content_for(:social_meta_tags) %>
 </head>
-
+```
 And then in your model's view, access the tags with `social_meta_tags_for(@car)`.
+```
 # app/views/cars/show.html.erb
 <% content_for(:social_meta_tags) do %>
   <%= social_meta_tags_for(@car) %>
