@@ -9,10 +9,8 @@ class ActsAsShareableObjectTest < ActiveSupport::TestCase
 
   test "twitter summary card type" do
     car = cars(:pagani)
-    
-    def car.twitter_card
-      "summary"
-    end
+
+    car.stubs(:twitter_card).returns("summary")
 
     assert_equal car.social_meta_properties[:twitter][:card], "summary"
   end
@@ -20,9 +18,7 @@ class ActsAsShareableObjectTest < ActiveSupport::TestCase
   test "twitter summary card image" do
     car = cars(:pagani)
 
-    class << car
-      alias_attribute :twitter_image, :image
-    end
+    car.stubs(:twitter_image).returns(car.image)
 
     assert_equal car.social_meta_properties[:twitter][:image], car.image
   end
@@ -30,9 +26,7 @@ class ActsAsShareableObjectTest < ActiveSupport::TestCase
   test "twitter card site" do
     car = cars(:pagani)
 
-    class << car
-      alias_attribute :twitter_site, :company_twitter_handle
-    end
+    car.stubs(:twitter_site).returns(car.company_twitter_handle)
 
     assert_equal car.social_meta_properties[:twitter][:site], car.company_twitter_handle
   end
@@ -42,9 +36,7 @@ class ActsAsShareableObjectTest < ActiveSupport::TestCase
   test "twitter photo card image src" do
     car = cars(:pagani)
 
-    class << car
-      alias_attribute :twitter_image_src, :image
-    end
+    car.stubs(:twitter_image_src).returns(car.image)
 
     assert_equal car.social_meta_properties[:twitter][:image][:src], car.image
 
@@ -53,16 +45,9 @@ class ActsAsShareableObjectTest < ActiveSupport::TestCase
   test "twitter photo card image details" do
     car = cars(:pagani)
 
-    class << car
-      alias_attribute :twitter_image_src, :image
-      def twitter_image_width
-        "812"
-      end
-
-      def twitter_image_height
-        "475"
-      end
-    end
+    car.stubs(:twitter_image_src).returns(car.image)
+    car.stubs(:twitter_image_width).returns("812")
+    car.stubs(:twitter_image_height).returns("475")
 
     assert_equal car.social_meta_properties[:twitter][:image][:src], car.image
     assert_equal car.social_meta_properties[:twitter][:image][:width], car.twitter_image_width

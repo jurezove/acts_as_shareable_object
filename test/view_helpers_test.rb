@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ViewHelpersTest < ActionDispatch::IntegrationTest
-  fixtures :cars
+  fixtures :all
 
   test "car make and model on detail page" do
     car = cars(:pagani)
@@ -12,11 +12,7 @@ class ViewHelpersTest < ActionDispatch::IntegrationTest
   test "twitter card type in head" do
     car = cars(:pagani)
 
-    Car.class_eval do
-      def twitter_card
-        "summary"
-      end
-    end
+    Car.any_instance.stubs(:twitter_card).returns("summary")
 
     get car_path(car)
 
@@ -28,23 +24,10 @@ class ViewHelpersTest < ActionDispatch::IntegrationTest
   test "twitter image card nested properties" do
     car = cars(:pagani)
 
-    Car.class_eval do
-      def twitter_card
-        "image"
-      end
-
-      def twitter_image_src
-        image
-      end
-
-      def twitter_image_width
-        "812"
-      end
-
-      def twitter_image_height
-        "475"
-      end
-    end
+    Car.any_instance.stubs(:twitter_card).returns("image")
+    Car.any_instance.stubs(:twitter_image_src).returns(car.image)
+    Car.any_instance.stubs(:twitter_image_width).returns("812")
+    Car.any_instance.stubs(:twitter_image_height).returns("475")
 
     get car_path(car)
 
