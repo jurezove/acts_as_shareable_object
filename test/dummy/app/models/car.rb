@@ -13,7 +13,9 @@ class Car < ActiveRecord::Base
     "Some id"
   end
 
-  def article_author
+  def author
     "Jure Žove"
   end
+
+  alias_method :article_author, :author
 end
