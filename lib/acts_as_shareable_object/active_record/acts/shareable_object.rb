@@ -10,7 +10,7 @@ module ActiveRecord
       module ClassMethods
         def acts_as_shareable_object(options = {})
           cattr_accessor :options
-          self.options = options
+          self.options = [options].flatten
           # delegate :url_helpers, to: 'Rails.application.routes'
 
           include InstanceMethods
@@ -35,7 +35,8 @@ module ActiveRecord
                 values[k] = respond_to?(method) ? send(method) : values_for(v, method)
               end
             else
-              values[property] = send("#{namespace}_#{property}") if respond_to?("#{namespace}_#{property}")
+              method = [namespace, property].compact.join("_")
+              values[property] = send(method) if respond_to?(method)
             end
           end
           values.reject{ |k, v| v.empty? }

@@ -54,4 +54,30 @@ class ActsAsShareableObjectTest < ActiveSupport::TestCase
     assert_equal car.social_meta_properties[:twitter][:image][:height], car.twitter_image_height
   end
 
+  test "single custom tag" do
+    car = cars(:pagani)
+
+    class << car
+      acts_as_shareable_object :og_test
+    end
+
+    car.stubs(:og_test).returns("test tag, YO")
+
+    assert_equal car.social_meta_properties[:og_test], car.og_test
+  end
+
+  test "multiple custom shareable tags" do
+    car = cars(:pagani)
+
+    class << car
+      acts_as_shareable_object og: [:custom_property, nested: [:egg]]
+    end
+
+    car.stubs(:og_custom_property).returns("og custom property")
+    car.stubs(:og_nested_egg).returns("nested egg")
+
+    assert_equal car.social_meta_properties[:og][:custom_property], car.og_custom_property
+    assert_equal car.social_meta_properties[:og][:nested][:egg], car.og_nested_egg
+  end
+
 end
