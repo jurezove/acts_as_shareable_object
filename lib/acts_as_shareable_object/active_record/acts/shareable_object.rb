@@ -9,8 +9,8 @@ module ActiveRecord
 
       module ClassMethods
         def acts_as_shareable_object(options = {})
-          cattr_accessor :options
-          self.options = [options].flatten
+          cattr_accessor :shareable_options
+          self.shareable_options = [options].flatten
           # delegate :url_helpers, to: 'Rails.application.routes'
 
           include InstanceMethods
@@ -20,7 +20,7 @@ module ActiveRecord
       module InstanceMethods
         def social_meta_properties
           properties = values_for(ActiveRecord::Acts::ShareableObject::DefaultProperties.all)
-          properties.merge! values_for(options) unless options.nil?
+          properties.merge! values_for(shareable_options) unless shareable_options.nil?
           properties
         end
 
