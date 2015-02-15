@@ -65,7 +65,8 @@ module ActiveRecord
 
           FACEBOOK = [
             fb: [
-              :app_id
+              :app_id,
+              :admin
             ]
           ]
 
