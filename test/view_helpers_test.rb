@@ -48,4 +48,25 @@ class ViewHelpersTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "custom shareable tags" do
+    car = cars(:pagani)
+
+    Car.class_eval do
+      acts_as_shareable_object og: [:custom_property, nested: [:egg]]
+    end
+
+    Car.any_instance.stubs(:og_custom_property).returns("og custom property")
+    Car.any_instance.stubs(:og_nested_egg).returns("nested egg")
+
+    get car_path(car)
+
+    assert_select "meta[name=\"og:custom_property\"]" do |tags|
+      assert_select "[content=?]", car.og_custom_property
+    end
+
+    assert_select "meta[name=\"og:nested:egg\"]" do |tags|
+      assert_select "[content=?]", car.og_nested_egg
+    end
+  end
+
 end

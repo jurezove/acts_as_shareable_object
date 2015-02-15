@@ -31,8 +31,6 @@ class ActsAsShareableObjectTest < ActiveSupport::TestCase
     assert_equal car.social_meta_properties[:twitter][:site], car.company_twitter_handle
   end
 
-  # Twitter Photo Card
-
   test "twitter photo card image src" do
     car = cars(:pagani)
 
