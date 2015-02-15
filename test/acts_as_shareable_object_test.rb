@@ -76,6 +76,18 @@ class ActsAsShareableObjectTest < ActiveSupport::TestCase
     assert_equal car.social_meta_properties[:og][:nested], car.og_nested
   end
 
+  test "single nested array custom tag" do
+    car = cars(:pagani)
+
+    class << car
+      acts_as_shareable_object og: [:nested]
+    end
+
+    car.stubs(:og_nested).returns("this is nested")
+
+    assert_equal car.social_meta_properties[:og][:nested], car.og_nested
+  end
+
   test "multiple custom shareable tags" do
     car = cars(:pagani)
 
