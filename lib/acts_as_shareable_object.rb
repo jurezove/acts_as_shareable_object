@@ -1,4 +1,5 @@
 require "acts_as_shareable_object/active_record/acts/shareable_object"
+require "acts_as_shareable_object/action_view/shareable_object/view_helpers"
 
 module ActsAsShareableObject
   if defined?(Rails::Railtie)

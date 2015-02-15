@@ -1,0 +1,5 @@
+<h1><%= @car.make %> <%= @car.model %></h1>
+
+<% content_for(:social_tags) do %>
+  <%= social_meta_tags_for(@car) %>
+<% end %>

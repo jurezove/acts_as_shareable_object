@@ -1,9 +1,9 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  make: MyString
-  model: MyString
-
-two:
-  make: MyString
-  model: MyString
+pagani:
+  make: "Pagani"
+  model: "Zonda F"
+  url: "www.pagani.com/zonda/zonda_F/default.aspx"
+  company_twitter_handle: "@OfficialPagani"
+  image: "http://storage.pagani.com/view/1024/BIG_zg-4-def.jpg"
+  power: "620 HP"
+  top_speed: "> 345 km/h"
+  acceleration: "3,6 s"
