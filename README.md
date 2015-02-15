@@ -57,3 +57,23 @@ And then in your model's view, access the tags with `social_meta_tags_for(@car)`
 <% end %>
 
 ```
+
+## Development
+
+To run the tests, first clone the repo and run bundler:
+
+    git clone git@github.com:jurezove/acts_as_shareable_object.git
+    cd acts_as_shareable_object
+    bundle install
+
+Run the tests
+
+    bundle exec rake
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
