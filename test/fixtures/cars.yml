@@ -1,7 +1,6 @@
 pagani:
   make: "Pagani"
   model: "Zonda F"
-  url: "www.pagani.com/zonda/zonda_F/default.aspx"
   company_twitter_handle: "@OfficialPagani"
   image: "http://storage.pagani.com/view/1024/BIG_zg-4-def.jpg"
   power: "620 HP"

@@ -8,10 +8,10 @@ Gem::Specification.new do |s|
   s.name        = "acts_as_shareable_object"
   s.version     = ActsAsShareableObject::VERSION
   s.authors     = ["Jure Žove"]
-  s.email       = ["jure.pase.kure@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of ActsAsShareableObject."
-  s.description = "TODO: Description of ActsAsShareableObject."
+  s.email       = ["jure.zove@gmail.com"]
+  s.homepage    = "https://github.com/jurezove/acts_as_shareable_object"
+  s.summary     = "ActiveRecord extension for Twitter Cards and Open Graph."
+  s.description = "This ActiveRecord extension provides the capability to define or map attributes in your ActiveRecord models that can be easily represented with the necessary Open Graph, Twitter Cards or any other custom meta tags."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
