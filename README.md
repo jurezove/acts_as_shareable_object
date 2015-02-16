@@ -21,13 +21,13 @@ All necessary properties are picked up from the model via `"#{namespace}_#{prope
 
 If you're trying to set up a Twitter Card for an app, the iPhone app's name (meta property `twitter:app:name:iphone`) will be picked up as `twitter_app_name_iphone`.
 
-Of course, you can easily map your own attributes using `alias_method`. For example, if you have database full of apps and you're using a different attribute for the app's `title`, you can do:
+Of course, you can easily map your own attributes using `alias_attribute`. For example, if you have database full of apps and you're using a different attribute for the app's `title`, you can do:
 ```ruby
 # app/models/app.rb
 class App < ActiveRecord::Base
   acts_as_shareable_object
   
-  alias_method :twitter_app_name_iphone, :title
+  alias_attribute :twitter_app_name_iphone, :title
 end
 ```
 And it will work just fine. :)
