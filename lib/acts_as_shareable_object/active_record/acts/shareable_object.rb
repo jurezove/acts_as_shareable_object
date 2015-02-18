@@ -27,19 +27,18 @@ module ActiveRecord
         private
 
         def values_for(properties, namespace = nil)
-          values = {}
-          Array(properties).each do |property|
+          Array(properties).inject({}) do |memo, property|
             if property.is_a?(Hash)
               property.map do |k, v|
                 method = [namespace, k].compact.join("_")
-                values[k] = respond_to?(method) ? send(method) : values_for(v, method)
+                memo[k] = respond_to?(method) ? send(method) : values_for(v, method)
               end
             else
               method = [namespace, property].compact.join("_")
-              values[property] = send(method) if respond_to?(method)
+              memo[property] = send(method) if respond_to?(method)
             end
-          end
-          values.reject{ |k, v| v.empty? }
+            memo
+          end.reject{ |k, v| v.empty? }
         end
       end
     end
